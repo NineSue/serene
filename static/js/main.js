@@ -1,6 +1,15 @@
 function enableThemeToggle() {
   const themeToggle = document.querySelector('#theme-toggle');
   if (!themeToggle) return;
+
+  // 检查是否已经初始化过，防止重复绑定
+  if (themeToggle.hasAttribute('data-theme-toggle-initialized')) {
+    return;
+  }
+
+  // 标记已初始化
+  themeToggle.setAttribute('data-theme-toggle-initialized', 'true');
+
   const hlLink = document.querySelector('link#hl');
   const preferDark = window.matchMedia("(prefers-color-scheme: dark)");
   function toggleTheme(theme) {
@@ -269,3 +278,6 @@ if (document.querySelector('.prose')) {
   enableImgLightense();
   enableReaction();
 }
+
+// 导出到全局，供 page-transition.js 调用
+window.enableThemeToggle = enableThemeToggle;
