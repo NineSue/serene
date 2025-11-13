@@ -8,7 +8,7 @@
 {%- set section = get_section(path=section_md_path, metadata_only=true) -%}
 {%- if page.extra.lang %}{{page.extra.lang}}{% elif section.extra.lang %}{{section.extra.lang}}{% else %}{{page.lang}}{% endif -%}
 {%- endblock lang %}
-{% block title %}{{ page.title }}{% endblock title %}
+{% block title %}{{ page.title }} · An{% endblock title %}
 {% block desc %}
   {% if page.summary %}
     {% set desc = page.summary %}

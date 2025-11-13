@@ -2,6 +2,15 @@
 <header>
   <nav>
     <a id="back-link" href="{{ path }}">← {{ config.extra.back_link_text }}</a>
+    <a id="home-link" href="/">HOME</a>
+    {% if not config.extra.force_theme %}
+    {% set moon_icon = load_data(path="icon/moon.svg") %}
+    {% set sun_icon = load_data(path="icon/sun.svg") %}
+    <button id="theme-toggle" aria-label="theme switch">
+      <span class="moon-icon">{{ moon_icon | safe }}</span>
+      <span class="sun-icon">{{ sun_icon | safe }}</span>
+    </button>
+    {% endif %}
   </nav>
 </header>
 {% endmacro %}

@@ -36,8 +36,6 @@ body {
   line-height: var(--line-height);
   overflow-y: scroll;
   text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 /* 网格背景（最底层 z-index: -3）
@@ -172,6 +170,7 @@ a:focus-visible {
     color: var(--primary-color);
     text-decoration: none;
     overflow-wrap: anywhere;
+    font-weight: 500;
 
     @media (hover: hover) {
       &:hover {
@@ -205,6 +204,7 @@ a:focus-visible {
     padding-left: 16px;
     margin: 1em 0;
     color: var(--text-pale-color);
+    font-weight: 500;
 
     p {
       margin: 1em 0;
@@ -1780,7 +1780,8 @@ abbr[title] {
 
 b,
 strong {
-  font-weight: bolder;
+  font-weight: 600;
+  color: #a34c4c;
 }
 
 code,

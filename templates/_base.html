@@ -23,10 +23,20 @@
   <script>
     const theme = sessionStorage.getItem('theme');
     const match = window.matchMedia("(prefers-color-scheme: dark)").matches
-    if ((theme && theme == 'dark') || (!theme && match)) {
+    // 默认为暗色模式，除非用户明确选择了亮色
+    if (theme === 'light') {
+      // 只有明确选择了亮色才使用亮色
+      const hl = document.querySelector('link#hl');
+      if (hl) hl.href = '{{ get_url(path="hl.css") }}';
+    } else {
+      // 默认暗色（无论 theme 是 'dark' 还是 null）
       document.body.classList.add('dark');
       const hl = document.querySelector('link#hl');
       if (hl) hl.href = '{{ get_url(path="hl-dark.css") }}';
+      // 初始化 sessionStorage 为暗色
+      if (!theme) {
+        sessionStorage.setItem('theme', 'dark');
+      }
     }
   </script>
   {% endif %}
