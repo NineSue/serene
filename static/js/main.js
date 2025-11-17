@@ -193,7 +193,10 @@ function addFootnoteBacklink() {
 }
 
 function enableImgLightense() {
-  window.addEventListener("load", () => Lightense(".prose img:not(.no-lightense)", { background: 'rgba(43, 43, 43, 0.19)' }));
+  window.addEventListener("load", () => Lightense(".prose img:not(.no-lightense)", {
+    background: 'rgba(0, 0, 0, 0.9)',  // 恢复高不透明度
+    zIndex: 9999999
+  }));
 }
 
 function enableReaction() {
