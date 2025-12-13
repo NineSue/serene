@@ -284,3 +284,4 @@ if (document.querySelector('.prose')) {
 
 // 导出到全局，供 page-transition.js 调用
 window.enableThemeToggle = enableThemeToggle;
+window.enableImgLightense = enableImgLightense;
