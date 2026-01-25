@@ -259,10 +259,12 @@ function enableBackLink() {
   const backLink = document.querySelector('#back-link');
   if (!backLink) return;
   backLink.addEventListener('click', (e) => {
-    if (document.referrer && location.href.startsWith(document.referrer) && !location.hash) {
+    // 如果有站内来源页面，使用浏览器后退
+    if (document.referrer && document.referrer.startsWith(location.origin) && !location.hash) {
       e.preventDefault();
       history.back();
     }
+    // 否则使用默认的 href 跳转（指向博客列表或首页）
   });
 }
 
