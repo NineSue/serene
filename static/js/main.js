@@ -257,29 +257,32 @@ function enableReaction() {
 
 function enableBackLink() {
   const backLink = document.querySelector('#back-link');
-  const homeLink = document.querySelector('#home-link');
   if (!backLink) return;
 
   // 检测是否有站内浏览历史
-  const hasInternalHistory = document.referrer && document.referrer.startsWith(location.origin);
+  const referrer = document.referrer;
+  const hasReferrerHistory = referrer && referrer.startsWith(location.origin);
+  const hasSpaHistory = sessionStorage.getItem('hasNavigated') === 'true';
+  const hasInternalHistory = hasReferrerHistory || hasSpaHistory;
+
+  // 标记已经进行过站内导航
+  if (hasReferrerHistory) {
+    sessionStorage.setItem('hasNavigated', 'true');
+  }
 
   if (hasInternalHistory) {
-    // 有站内历史：显示 Back 按钮
     document.body.classList.add('has-history');
     document.body.classList.remove('no-history');
   } else {
-    // 没有站内历史：隐藏 Back 按钮，HOME 滑到左边
     document.body.classList.add('no-history');
     document.body.classList.remove('has-history');
   }
 
   backLink.addEventListener('click', (e) => {
-    // 如果有站内来源页面，使用浏览器后退
     if (hasInternalHistory && !location.hash) {
       e.preventDefault();
       history.back();
     }
-    // 否则使用默认的 href 跳转（指向博客列表或首页）
   });
 }
 
