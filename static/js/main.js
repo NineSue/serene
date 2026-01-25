@@ -257,12 +257,29 @@ function enableReaction() {
 
 function enableBackLink() {
   const backLink = document.querySelector('#back-link');
+  const homeLink = document.querySelector('#home-link');
   if (!backLink) return;
+
+  // 检测是否有站内浏览历史
+  const hasInternalHistory = document.referrer && document.referrer.startsWith(location.origin);
+
+  if (hasInternalHistory) {
+    // 有站内历史：显示 Back 按钮
+    document.body.classList.add('has-history');
+    document.body.classList.remove('no-history');
+  } else {
+    // 没有站内历史：隐藏 Back 按钮，HOME 滑到左边
+    document.body.classList.add('no-history');
+    document.body.classList.remove('has-history');
+  }
+
   backLink.addEventListener('click', (e) => {
-    if (document.referrer && location.href.startsWith(document.referrer) && !location.hash) {
+    // 如果有站内来源页面，使用浏览器后退
+    if (hasInternalHistory && !location.hash) {
       e.preventDefault();
       history.back();
     }
+    // 否则使用默认的 href 跳转（指向博客列表或首页）
   });
 }
 
@@ -285,3 +302,4 @@ if (document.querySelector('.prose')) {
 // 导出到全局，供 page-transition.js 调用
 window.enableThemeToggle = enableThemeToggle;
 window.enableImgLightense = enableImgLightense;
+window.enableBackLink = enableBackLink;
