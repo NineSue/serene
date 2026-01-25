@@ -108,6 +108,12 @@
           {% endif %}
         </div>
 
+        {% if page.extra.show_heatmap %}
+        {# 文章更新热力图 - 放在标题下方 #}
+        {% set file_path = "content/" ~ page.relative_path %}
+        <div class="article-heatmap" data-filepath="{{ file_path }}"></div>
+        {% endif %}
+
         {% if page.extra.outdate_alert is defined %}{% set show_outdate_alert = page.extra.outdate_alert %}{% else %}{% set show_outdate_alert = section.extra.outdate_alert %}{% endif %}
         {% if page.extra.outdate_alert_days is defined %}{% set outdate_alert_days = page.extra.outdate_alert_days %}{% else %}{% set outdate_alert_days = section.extra.outdate_alert_days %}{% endif %}
 
