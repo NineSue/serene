@@ -1094,16 +1094,16 @@ body.prose-page {
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 #theme-toggle {
-  .sun-icon {
+  .moon-icon {
     display: none;
   }
 }
 
 body.dark #theme-toggle {
-  .sun-icon {
+  .moon-icon {
     display: initial;
   }
-  .moon-icon {
+  .sun-icon {
     display: none;
   }
 }
