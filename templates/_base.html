@@ -18,7 +18,7 @@
   {% include "_head_extend.html" %}
 </head>
 
-<body class="{% block page %}{% endblock page%}{% if config.extra.force_theme == "dark" %} dark{% endif %}">
+<body class="{% block page %}{% endblock page %}{% if config.extra.force_theme == "dark" %} dark{% endif %}">
   {% if not config.extra.force_theme %}
   <script>
     const theme = sessionStorage.getItem('theme');
@@ -31,6 +31,7 @@
     } else {
       // 默认暗色（无论 theme 是 'dark' 还是 null）
       document.body.classList.add('dark');
+      document.documentElement.classList.add('dark');
       const hl = document.querySelector('link#hl');
       if (hl) hl.href = '{{ get_url(path="hl-dark.css") }}';
       // 初始化 sessionStorage 为暗色

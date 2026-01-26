@@ -13,7 +13,13 @@ function enableThemeToggle() {
   const hlLink = document.querySelector('link#hl');
   const preferDark = window.matchMedia("(prefers-color-scheme: dark)");
   function toggleTheme(theme) {
-    if (theme == "dark") document.body.classList.add('dark'); else document.body.classList.remove('dark');
+    if (theme == "dark") {
+      document.body.classList.add('dark');
+      document.documentElement.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+      document.documentElement.classList.remove('dark');
+    }
     if (hlLink) hlLink.href = `/hl-${theme}.css`;
     sessionStorage.setItem("theme", theme);
     toggleGiscusTheme(theme);
