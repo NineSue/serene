@@ -108,8 +108,8 @@
 {% endblock content %}
 
 {% block script %}
-<script src="{{ get_url(path='js/lightense.min.js') }}"></script>
 <script src="{{ get_url(path='js/avatar-switcher.js') }}"></script>
+<script src="{{ get_url(path='js/marker.js') }}"></script>
 {% if section.extra.mermaid %}
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
